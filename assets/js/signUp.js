@@ -1,7 +1,17 @@
 var app = {};
+
+app.userName = $("#userName").val();
+app.password = $("#password").val();
+app.email = $("#email").val();
+app.phoneNumber = $("#phone").val();
+
+
 app.signUp = function(){
+
+	alert("User Info: "+app.userName+" : "+app.password+" : "+app.email+" : "+app.phoneNumber);
+	console.log("User Info: "+app.userName+" : "+app.password+" : "+app.email+" : "+app.phoneNumber);
 	AWS.config.region = 'us-east-1'; // Region
-    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    	AWS.config.credentials = new AWS.CognitoIdentityCredentials({
         IdentityPoolId: '...' // your identity pool id here
     });
 
