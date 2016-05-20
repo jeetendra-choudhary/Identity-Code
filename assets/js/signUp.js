@@ -2,16 +2,15 @@ var app = {};
 
 app.signUp = function(){
   
-   // app.userPoolId	=	    CONSTANT.USER_POOL_ID;		 
     app.userName        =           $('#userName').val();
     app.password        =           $('#password').val();
     app.email           =           $('#form-email').val();
     app.phoneNumber     =           $('#form-phone').val();
     app.emailRegex      =           /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    
     /*
         Put the User input validation logic here.
     */
-	alert(APP_CONSTANT.USER_POOL_ID);
     if (!app.userName) {
         alert("Please provide a user name");
         return;
@@ -38,9 +37,9 @@ app.signUp = function(){
     }
 
 	AWS.config.region = 'us-east-1'; // Region
-    	AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-        IdentityPoolId: '...' // your identity pool id here
-    });
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+	IdentityPoolId: '...' // your identity pool id here
+	});
 
     AWSCognito.config.region = 'us-east-1';
     AWSCognito.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -54,7 +53,7 @@ app.signUp = function(){
         UserPoolId : 	APP_CONSTANT.USER_POOL_ID,
         ClientId : 	APP_CONSTANT.CLIENT_ID
     };
-    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+    userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 
     var attributeList = [];
 
@@ -87,7 +86,17 @@ app.signUp = function(){
 	$("#password").prop("readonly", true);
 	$("#form-email").prop("readonly", true);
 	$("#form-phone").prop("readonly", true);
-	$("#confirm-block").show();	
+	$("#signUpBtn").hide();
+	$("#confirm-block").show();
+	
+	var confirmationCode = prompt("Hello "+cognitoUser.getUsername+" Enter the confirmation code sent to your email address.","Confirmation code here");	
+	cognitoUser.confirmRegistration(confirmationCode,true,function(err,result){
+                if(err){
+                        alert(err);
+                        return;
+                }
+                console.log('Call Result: '+result);
+        });
 	return;
 	
     });

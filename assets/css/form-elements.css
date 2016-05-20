@@ -73,3 +73,15 @@ button.btn:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none
 button.btn:focus { outline: 0; opacity: 0.6; background: #19b9e7; color: #fff; }
 
 button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; background: #19b9e7; color: #fff; }
+
+#confirm-block{
+	margin:10px 0 10px 0;
+	text-align:center;
+	width:100%l
+}
+
+#confirmBtn {
+	margin:10px 0;
+	width:100%;
+	text-align:center;
+}
