@@ -72,7 +72,6 @@
 		                        		</div>
 		                            </div>
 		                            <div class="form-bottom">
-					                    <form role="form" action="" method="post" class="login-form">
 					                    	<div class="form-group">
 					                    		<label class="sr-only" for="form-username">Username</label>
 					                        	<input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="loginUserName">
@@ -81,8 +80,7 @@
 					                        	<label class="sr-only" for="form-password">Password</label>
 					                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="loginPassword">
 					                        </div>
-					                        <button type="submit" class="btn">Sign in!</button>
-					                    </form>
+					                        <button type="submit" class="btn" onclick="signin.login()">Sign in!</button>
 				                    </div>
 			                    </div> <!-- form box -->
 			                 
@@ -180,10 +178,9 @@
         <script src="assets/js/jquery.backstretch.min.js"></script>
         <script src="assets/js/scripts.js"></script>
         <script src="assets/js/signup.js"></script>
+        <script src="assets/js/signin.js"></script>
         <script src="assets/js/APP_CONSTANT.js"></script>
 
-        <!-- <script src="assets/js/signin.js"></script> -->
-        
         <!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
         <![endif]-->
