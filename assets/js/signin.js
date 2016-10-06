@@ -30,7 +30,28 @@ AWSCognito.config.region = 'us-east-1';
     var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-            console.log('access token + ' + result.getAccessToken().getJwtToken());
+            // console.log('access token + ' + result.getAccessToken().getJwtToken());
+            // var dynamodb = new AWS.DynamoDB({region: 'ap-southeast-1'});
+            // console.log(dynamodb);
+
+            AWS.config.update({
+              credentials: new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: 'us-east-1:78204eb1-3b93-4850-a712-cac12661d5bc'
+              }),
+              region: 'us-east-1'
+            });
+
+
+            AWS.config.credentials.get(function(err) {
+              if (err) console.log(err);
+              else console.log(AWS.config.credentials);
+            });
+            
+            var db =  new AWS.DynamoDB({region: 'ap-southeast-1'});
+            db.listTables(function(err, data) {
+                if (err) console.log(err, err.stack);
+                else console.log(data.TableNames);
+            });
         },
 
         onFailure: function(err) {
